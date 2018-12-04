@@ -2,14 +2,14 @@ create table Patient (
 	PID number,
 	lName varchar2(30) not null,
 	fName varchar2(30) not null,
-	gender varchar2(1), 
+	gender varchar2(1),
 	DOB date,
 	address varchar2(30),
 	contactNo varchar2(10),
 	constraint PT_Gender check (gender in ('M' , 'F')),
 	constraint PK_Patient primary key(PID)
 	);
-	
+
 create table Building (
 	bldgName varchar2(30),
 	address varchar2(30),
@@ -23,6 +23,7 @@ create table Room (
 	capacty number,
 	constraint PK_Room primary key(roomNo),
 	constraint FK_RoomInBuilding foreign key(bldgName) references Building(bldgName)
+		on delete cascade
 );
 
 create table Department (
@@ -32,6 +33,7 @@ create table Department (
 	deptOffNum number,
 	constraint PK_Dept primary key(deptID),
 	constraint FK_DepartmentHQBuilding foreign key(bldgName) references Building(bldgName)
+		on delete cascade
 );
 
 create table Doctor (
@@ -84,8 +86,10 @@ create table Nurse (
 create table StaffType (
 	title varchar2(30),
 	officeNo number,
+	deptID number,
 	constraint PK_StaffType primary key(title),
-	constraint FK_StaffOffice foreign key(officeNo) references Room(roomNo)
+	constraint FK_StaffOffice foreign key(officeNo) references Room(roomNo),
+	constraint FK_StaffDept foreign key (deptID) references Department(deptID)
 );
 
 create table Staff (
@@ -100,8 +104,8 @@ create table Staff (
 	gender varchar2(1),
 	constraint Staff_Gender check (gender in ('M' , 'F')),
 	constraint PK_Staff primary key(EID),
-	constraint FK_StaffDept foreign key (deptID) references Department(deptID),
 	constraint FK_StaffTitle foreign key (title) references StaffType(title)
+		on delete cascade
 );
 
 create table Appointment (
@@ -119,7 +123,7 @@ create table Appointment (
 create table TreatmentRecord (
 	PID number not null,
 	DID number not null,
-	apptNo number not null, 
+	apptNo number not null,
 	visitReason varchar2(30),
 	visitDate date not null,
 	dateHospitalized date,
@@ -129,8 +133,10 @@ create table TreatmentRecord (
 	treatmentMethod varchar2(30),
 	constraint PK_treatmentRecord primary key (PID, DID, apptNo),
 	constraint FK_treatmentRoom foreign key(roomNo) references Room(roomNo),
-	constraint FK_TreatmentPatient foreign key(PID) references Patient(PID),
-	constraint FK_TreatmentDoctor foreign key(DID) references Doctor(DID),	
+	constraint FK_TreatmentPatient foreign key(PID) references Patient(PID)
+		on delete cascade,
+	constraint FK_TreatmentDoctor foreign key(DID) references Doctor(DID)
+		on delete cascade,
 	constraint FK_apptNum foreign key(PID, apptNo) references Appointment(PID, apptNumber)
 );
 

@@ -8,7 +8,7 @@ public class PatientTreatmentRecord {
     private String visitReason;
     private String visitDate;
     private String dateHospitalized;
-    private String expectedDisharge;
+    private String expectedDischarge;
     private String actualDischarge;
     private String roomNo;
     private String treatmentMethod;
@@ -39,8 +39,8 @@ public class PatientTreatmentRecord {
         return dateHospitalized;
     }
 
-    private String expectedDisharge(){
-        return expectedDisharge;
+    private String expectedDischarge(){
+        return expectedDischarge;
     }
 
     private String actualDischarge(){
@@ -81,8 +81,8 @@ public class PatientTreatmentRecord {
         this.dateHospitalized = dateHospitalized;
     }
 
-    public void setexpectedDischarge(String expectedDisharge){
-        this.expectedDisharge = expectedDisharge;
+    public void setexpectedDischarge(String expectedDischarge){
+        this.expectedDischarge = expectedDischarge;
     }
 
     public void setactualDischarge(String actualDischarge){

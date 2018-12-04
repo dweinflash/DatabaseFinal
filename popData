@@ -1,0 +1,77 @@
+insert into Building values('AlanBuilding','512 My House');
+
+bldgName varchar2(30),
+address varchar2(30),
+constraint PK_Building primary key(bldgName)
+
+insert into Department values(10, 'Comp','AlanBuilding',512);
+
+deptID number,
+name varchar2(30),
+bldgName varchar2(30),
+deptOffNum number,
+constraint PK_Dept primary key(deptID),
+constraint FK_DepartmentHQBuilding foreign key(bldgName) references Building(bldgName)
+
+insert into Room values(10, 'AlanBuilding', 'Office', 10);
+
+roomNo number,
+bldgName varchar2(30) not null,
+roomType varchar2(30),
+capacty number,
+
+insert into Doctor values(1, 'Deitz', 'Alan', '31-may-98', 10, 10, 1);
+
+DID number,
+lName varchar2(30) not null,
+fName varchar2(30) not null,
+DOB date not null,
+deptID number,
+officeNo number,
+status varchar2(15) not null,
+
+
+Query2:
+select fName,lName,officeNo,bldgName from Doctor,Department where Doctor.deptID=Department.deptID;
+select fName,lName,officeNo,bldgName from Doctor join Department on Doctor.deptID=Department.deptID;
+
+Populate Basic Data:
+insert into Building values('AlanBuilding','512 My House');
+insert into Department values(10, 'Comp','AlanBuilding',512);
+insert into Room values(10, 'AlanBuilding', 'Office', 10);
+insert into Doctor values(1, 'Deitz', 'Alan', '31-may-98', 10, 10, 1);
+
+
+Drop all tables:
+drop table PaymentRecord;
+drop table TreatmentRecord;
+drop table Appointment;
+drop table Staff;
+drop table StaffType;
+drop table Nurse;
+drop table PrescriptionRecord;
+drop table Pharmacist;
+drop table Doctor;
+drop table Department;
+drop table Room;
+drop table Building;
+drop table Patient;
+
+
+
+
+
+Remove all data:
+truncate table PaymentRecord;
+truncate table TreatmentRecord;
+truncate table Appointment;
+truncate table Staff;
+truncate table StaffType;
+truncate table Nurse;
+truncate table PrescriptionRecord;
+truncate table Pharmacist;
+truncate table Doctor;
+truncate table Department;
+truncate table Room;
+truncate table Building;
+truncate table Patient;
