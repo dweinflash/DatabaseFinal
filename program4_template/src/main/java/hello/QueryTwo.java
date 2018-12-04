@@ -21,7 +21,7 @@ public class QueryTwo {
     }
 
     public String getbldgName(){
-        return deptID;
+        return bldgName;
     }
 
     //Setters

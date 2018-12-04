@@ -32,7 +32,7 @@ status varchar2(15) not null,
 
 
 Query2:
-select fName,lName,officeNo,bldgName from Doctor,Department where Doctor.deptID=Department.deptID;
+select fName,lName,officeNo,bldgName from Doctor,Department where Doctor.deptID=Department.deptID and name=userInpName;
 select fName,lName,officeNo,bldgName from Doctor join Department on Doctor.deptID=Department.deptID;
 
 Populate Basic Data:
