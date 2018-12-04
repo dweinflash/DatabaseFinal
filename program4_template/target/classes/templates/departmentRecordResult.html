@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Department Record Result</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<h1>Department Record</h1>
+    <p th:text="'Department ID: ' + ${departmentRecord.deptID}"/>
+    <p th:text="'Name: ' + ${departmentRecord.name}"/>
+    <p th:text="'Building Name: ' + ${departmentRecord.bldgName}"/>
+    <p th:text="'Department Office Number: ' + ${departmentRecord.deptOffNum}"/>
+    <a href="/departmentRecordUpdate">Update another department record</a> <br>
+    <a href="/index.html">Home</a>
+</body>
+</html>

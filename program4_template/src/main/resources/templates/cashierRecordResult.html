@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cashier Record Result</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<h1>Cashier Record</h1>
+    <p th:text="'Payment ID: ' + ${cashierRecord.paymentID}"/>
+    <p th:text="'Cashier Employee ID: ' + ${cashierRecord.cashierEID}"/>
+    <p th:text="'Patient ID: ' + ${cashierRecord.PID}"/>
+    <p th:text="'Amount Due: ' + ${cashierRecord.amountDue}"/>
+    <p th:text="'Due Date: ' + ${cashierRecord.dueDate}"/>
+    <p th:text="'Payment Status: ' + ${cashierRecord.paymentStatus}"/>
+    <p th:text="'Payment Date: ' + ${cashierRecord.paymentDate}"/>
+    <a href="/cashierRecordInsertion">Add another cashier record</a> <br>
+    <a href="/cashierRecordUpdate">Update another cashier record</a> <br>
+    <a href="/index.html">Home</a>
+</body>
+</html>
