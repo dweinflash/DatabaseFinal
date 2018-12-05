@@ -1,6 +1,12 @@
 package hello;
 
 public class QueryResults {
+
+
+    private String fName;
+    private String lName;
+    private String DOB;
+
     public String getfName() {
         return fName;
     }
@@ -25,17 +31,5 @@ public class QueryResults {
         this.DOB = DOB;
     }
 
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    private String fName;
-    private String lName;
-    private String DOB;
-    private String result;
 
 }

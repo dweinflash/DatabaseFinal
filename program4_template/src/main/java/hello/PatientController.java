@@ -72,31 +72,34 @@ public class PatientController {
       return "patientResult";
     }
 
-    @GetMapping("/query1result")
+    @GetMapping("/query1")
     public String searchPatientRecord(Model model) {
-        model.addAttribute("query", new QueryResults());
-        return "/query1result";
+        model.addAttribute("queryOne", new QueryResults());
+        return "/query1";
     }
 
-    @PostMapping("/query1result")
-    public String searchPatientRecordQuery(@ModelAttribute QueryResults query){
-        String sql = "select Patient.PID, Patient.lName as ptfname, Patient.fName as ptlname, Patient.gender, Patient.DOB, visitDate, visitReason, treatmentMethod, Doctor.fName as docfname, Doctor.lName as doclname from Patient join TreatmentRecord on PID join Doctor on DID where Patient.lName = " + query.getlName() + " and Patient.fName = " +query.getfName() + " and Patient.DOB = " + query.getDOB();
+    @PostMapping("/query1")
+    public String searchPatientRecordQuery(@ModelAttribute QueryResults queryOne, Model model){
+        String sql = "select Patient.PID, Patient.lName as ptfname, Patient.fName as ptlname, Patient.gender, Patient.DOB, visitDate, visitReason, treatmentMethod, Doctor.fName as docfname, Doctor.lName as doclname from Patient, TreatmentRecord, Doctor where Patient.PID = TreatmentRecord.PID and Doctor.DID = TreatmentRecord.DID and Patient.lName = '" + queryOne.getlName() + "' and Patient.fName = '" +queryOne.getfName() + "' and Patient.DOB = " + queryOne.getDOB();
         List<String> patientsFound = this.jdbcTemplate.query(
                 sql,
                 new RowMapper<String>() {
                     public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        String name = rs.getString("ptfName") + rs.getString("ptlName");;
-                        String dob = String.valueOf(rs.getInt("DOB"));
-                        String doctor = rs.getString("docfname") + rs.getString("docfname");
+                        String name = rs.getString("ptfName ") + rs.getString("ptlName");;
+                        String dob = rs.getString("DOB");
+                        String doctor = rs.getString("docfname ") + rs.getString("docfname");
                         return "Patient Name: " + name + "\nProvider: Dr. " + doctor + "\nPatient DOB: " + dob;
                     }
                 });
+	model.addAttribute("queryResults", patientsFound);
+/*
         if(patientsFound.size() > 0) {
             query.setResult(patientsFound.get(0));
         }
         else{
             query.setResult("No patients found.");
         }
+*/
         return "/query1result";
     }
 
