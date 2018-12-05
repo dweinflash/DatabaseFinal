@@ -2,101 +2,94 @@ package hello;
 
 public class Staff {
 
-    private String EID;
+    private int EID;
     private String fName;
     private String lName;
     private String DOB;
-    private String deptID;
-    private String salary;
+    private int deptID;
+    private int salary;
     private String contactNo;
     private String title;
     private String gender;
-    private String officeNo;
+    private int officeNo;
 
-    //Getters
-
-    public String getEID(){
+    public int getEID() {
         return EID;
     }
 
-    public String getfName(){
-        return fName;
-    }
-
-    public String getlName(){
-        return lName;
-    }
-
-    public String getDOB(){
-        return DOB;
-    }
-
-    public String getdeptID(){
-        return deptID;
-    }
-
-    public String getsalary(){
-        return salary;
-    }
-
-    public String getcontactNo(){
-        return contactNo;
-    }
-
-    public String gettitle(){
-        return title;
-    }
-
-    public String getgender(){
-        return gender;
-    }
-
-    public String getofficeNo(){
-        return officeNo;
-    }
-
-
-
-    //Setters
-
-    public void setEID(String EID){
+    public void setEID(int EID) {
         this.EID = EID;
     }
 
-    public void setfName(String fName){
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
         this.fName = fName;
     }
 
-    public void setlName(String lName){
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
         this.lName = lName;
     }
 
-    public void setDOB(String DOB){
+    public String getDOB() {
+        return DOB;
+    }
+
+    public void setDOB(String DOB) {
         this.DOB = DOB;
     }
 
-    public void setdeptID(String deptID){
+    public int getDeptID() {
+        return deptID;
+    }
+
+    public void setDeptID(int deptID) {
         this.deptID = deptID;
     }
 
-    public void setsalary(String salary){
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 
-    public void setcontactNo(String contactNo){
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
 
-    public void settitle(String title){
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setgender(String gender){
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public void setofficeNo(String officeNo){
-        this.officeNo = officeNo;
+    public int getOfficeNo() {
+        return officeNo;
     }
 
+    public void setOfficeNo(int officeNo) {
+        this.officeNo = officeNo;
+    }
 }

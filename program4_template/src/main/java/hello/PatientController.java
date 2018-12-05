@@ -41,7 +41,7 @@ public class PatientController {
 
     @PostMapping("/addPatient")
     public String patientSubmit(@ModelAttribute Patient patient) {
-        jdbcTemplate.update("insert into .patient values (?, ?)", patient.getfName());
+        jdbcTemplate.update("insert into patient values (?, ?, ?, ?, ?, ?, ?)", patient.getPID(), patient.getlName(), patient.getfName(), patient.getgender(), patient.getDOB(),  patient.getaddress(), patient.getcontactNo());
 
         return "patientResult";
     }
@@ -54,7 +54,7 @@ public class PatientController {
 
     @PostMapping("/updatePatient")
     public String patientUpdate(@ModelAttribute Patient patient) {
-      jdbcTemplate.update("update from .patient where first_name = ? and last_name = ?", patient.getfName(), patient.getlName());
+      jdbcTemplate.update("update patient set lName = ?, fName = ?, gender = ?, address = ?, contactNo = ? where PID = ?", patient.getfName(), patient.getlName(), patient.getgender(), patient.getaddress(), patient.getcontactNo(),patient.getPID());
 
       return "patientResult";
     }
@@ -67,7 +67,7 @@ public class PatientController {
 
     @PostMapping("/deletePatient")
     public String patientDelete(@ModelAttribute Patient patient) {
-      jdbcTemplate.update("delete from .patient where first_name = ? and last_name = ?", patient.getfName(), patient.getlName());
+      jdbcTemplate.update("delete from patient where PID = ?", patient.getPID());
 
       return "patientResult";
     }

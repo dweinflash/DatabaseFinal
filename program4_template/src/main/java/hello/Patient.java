@@ -2,7 +2,7 @@ package hello;
 
 public class Patient {
 
-    private String PID;
+    private int PID;
     private String fName;
     private String lName;
     private String gender;
@@ -12,7 +12,7 @@ public class Patient {
 
     //Getters
 
-    public String getPID(){
+    public int getPID(){
         return PID;
     }
 
@@ -42,7 +42,7 @@ public class Patient {
 
     //Setters
 
-    public void setPID(String PID){
+    public void setPID(int PID){
         this.PID = PID;
     }
 

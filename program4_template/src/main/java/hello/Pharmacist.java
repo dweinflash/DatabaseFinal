@@ -2,65 +2,67 @@ package hello;
 
 public class Pharmacist {
 
-    private String pharmID;
+    private int pharmID;
     private String fName;
     private String lName;
     private String DOB;
-    private String deptID;
-    private String officeNum;
+    private int deptID;
+    private int officeNum;
     private String status;
 
-    //Getters
-
-    public String getpharmID(){
+    public int getPharmID() {
         return pharmID;
     }
 
-    public String getfName(){
-        return fName;
-    }
-
-    public String getlName(){
-        return lName;
-    }
-
-    public String getDOB(){
-        return DOB;
-    }
-
-    public String getofficeNum(){
-        return officeNum;
-    }
-
-    public String getdeptID(){
-        return deptID;
-    }
-
-    //Setters
-
-    public void setpharmID(String pharmID){
+    public void setPharmID(int pharmID) {
         this.pharmID = pharmID;
     }
 
-    public void setfName(String fName){
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
         this.fName = fName;
     }
 
-    public void setlName(String lName){
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
         this.lName = lName;
     }
 
-    public void setDOB(String DOB){
+    public String getDOB() {
+        return DOB;
+    }
+
+    public void setDOB(String DOB) {
         this.DOB = DOB;
     }
 
-    public void setofficeNo(String officeNum){
-        this.officeNum = officeNum;
+    public int getDeptID() {
+        return deptID;
     }
 
-    public void setdeptID(String deptID){
+    public void setDeptID(int deptID) {
         this.deptID = deptID;
     }
 
+    public int getOfficeNum() {
+        return officeNum;
+    }
 
+    public void setOfficeNum(int officeNum) {
+        this.officeNum = officeNum;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

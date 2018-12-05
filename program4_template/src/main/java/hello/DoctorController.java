@@ -41,7 +41,7 @@ public class DoctorController {
 
     @PostMapping("/addDoctor")
     public String doctorSubmit(@ModelAttribute Doctor doctor) {
-        jdbcTemplate.update("insert into .doctor values (?, ?)", doctor.getfName());
+        jdbcTemplate.update("insert into doctor values (?, ?, ?, ?, ?, ?, ? )", doctor.getDID(), doctor.getlName(), doctor.getfName(), doctor.getDOB(), doctor.getDeptID(), doctor.getOfficeNo(), doctor.getStatus());
 
         return "doctorResult";
     }
@@ -54,7 +54,7 @@ public class DoctorController {
 
     @PostMapping("/updateDoctor")
     public String doctorUpdate(@ModelAttribute Doctor doctor) {
-      jdbcTemplate.update("update from .doctor where first_name = ? and last_name = ?", doctor.getfName(), doctor.getlName());
+      jdbcTemplate.update("update doctor set fname = ?, lname = ?, deptID = ?, officeNo = ?, status = ? where DID = ?", doctor.getfName(), doctor.getlName(), doctor.getDeptID(), doctor.getOfficeNo(), doctor.getStatus(), doctor.getDID());
 
       return "doctorResult";
     }
@@ -67,7 +67,7 @@ public class DoctorController {
 
     @PostMapping("/deleteDoctor")
     public String doctorDelete(@ModelAttribute Doctor doctor) {
-      jdbcTemplate.update("delete from .doctor where first_name = ? and last_name = ?", doctor.getfName(), doctor.getlName());
+      jdbcTemplate.update("delete from doctor where DID = ?" , doctor.getDID());
 
       return "doctorResult";
     }

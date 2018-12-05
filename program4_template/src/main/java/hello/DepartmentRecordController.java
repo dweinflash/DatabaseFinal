@@ -41,7 +41,7 @@ public class DepartmentRecordController {
 
     @PostMapping("/departmentRecordUpdate")
     public String departmentRecordUpdate(@ModelAttribute DepartmentRecord departmentRecord) {
-      //jdbcTemplate.update("update from .departmentRecord where first_name = ? and last_name = ?", departmentRecord.getFirstName(), departmentRecord.getLastName());
+      jdbcTemplate.update("update departmentRecord set deptOffNum = ?, name = ?, bldgName = ? where deptId = ?", departmentRecord.getDeptOffNum(), departmentRecord.getName(), departmentRecord.getBldgName(), departmentRecord.getDeptID());
 
       return "departmentRecordResult";
     }
