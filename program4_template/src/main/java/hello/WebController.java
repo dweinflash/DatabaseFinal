@@ -70,13 +70,13 @@ public class WebController {
     }
 
     @GetMapping("/query2")
-    public String searchPatientRecord(Model model) {
+    public String searchDoctorRecord(Model model) {
         model.addAttribute("querytwo", new QueryTwo());
         return "/query2";
     }
 
     @PostMapping("/query2")
-    public String searchPatientRecordQuery(@ModelAttribute QueryTwo querytwo, Model model){
+    public String searchDoctorRecordQuery(@ModelAttribute QueryTwo querytwo, Model model){
         String sql = "select Doctor.fname as dfname, Doctor.lname as dlname, Doctor.officeNo, Department.bldgName from Doctor, Department WHERE Department.name='"+ querytwo.getname() +"' AND Doctor.deptID = Department.deptID";
         List<String> doctorsFound = this.jdbcTemplate.query(
                 sql,
@@ -96,7 +96,7 @@ public class WebController {
     public String query3Form(Model model) {
         return "query3";
     }
-    
+
     @GetMapping("/query4")
     public String query4Form(Model model) {
         return "query4";
