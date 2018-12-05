@@ -2,45 +2,40 @@ package hello;
 
 public class DepartmentRecord {
 
-    private String deptID;
+    private int deptID;
     private String name;
     private String bldgName;
-    private String deptOffNum;
+    private int deptOffNum;
 
-    //Getters
-
-    public String getdeptID(){
+    public int getDeptID() {
         return deptID;
     }
 
-    public String getname(){
-        return name;
-    }
-
-    public String getbldgName(){
-        return bldgName;
-    }
-
-    public String getdeptOffNum(){
-        return deptOffNum;
-    }
-
-    //Setters
-
-    public void setdeptID(String deptID){
+    public void setDeptID(int deptID) {
         this.deptID = deptID;
     }
 
-    public void setname(String name){
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setbldgName(String bldgName){
+    public String getBldgName() {
+        return bldgName;
+    }
+
+    public void setBldgName(String bldgName) {
         this.bldgName = bldgName;
     }
 
-    public void setdeptOffNum(String deptOffNum){
-        this.deptOffNum = deptOffNum;
+    public int getDeptOffNum() {
+        return deptOffNum;
     }
 
+    public void setDeptOffNum(int deptOffNum) {
+        this.deptOffNum = deptOffNum;
+    }
 }

@@ -41,7 +41,7 @@ public class PatientTreatmentRecordController {
 
     @PostMapping("/ptRecordInsertion")
     public String patientTreatmentRecordSubmit(@ModelAttribute PatientTreatmentRecord patientTreatmentRecord) {
-        //jdbcTemplate.update("insert into .patientTreatmentRecord values (?, ?)", patientTreatmentRecord.getFirstName());
+        jdbcTemplate.update("insert into PatientTreatmentRecord values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", patientTreatmentRecord.getPID(), patientTreatmentRecord.getDID(), patientTreatmentRecord.getApptNo(), patientTreatmentRecord.getVisitReason(), patientTreatmentRecord.getVisitDate(), patientTreatmentRecord.getDateHospitalized(), patientTreatmentRecord.getExpectedDischarge(), patientTreatmentRecord.getActualDischarge(), patientTreatmentRecord.getRoomNo(), patientTreatmentRecord.getTreatmentMethod());
 
         return "patientTreatmentRecordResult";
     }
@@ -54,7 +54,7 @@ public class PatientTreatmentRecordController {
 
     @PostMapping("/ptRecordUpdate")
     public String patientTreatmentRecordUpdate(@ModelAttribute PatientTreatmentRecord patientTreatmentRecord) {
-      //jdbcTemplate.update("update from .patientTreatmentRecord where first_name = ? and last_name = ?", patientTreatmentRecord.getFirstName(), patientTreatmentRecord.getLastName());
+      jdbcTemplate.update("update  patientTreatmentRecord set dateHospitalized = ?, expectedDischarge = ?, actualDischarge = ?, roomNo = ?, treatmentMethod = ? where PID = ? and DID = ? and apptNo = ?", patientTreatmentRecord.getDateHospitalized(), patientTreatmentRecord.getExpectedDischarge(), patientTreatmentRecord.getActualDischarge(), patientTreatmentRecord.getRoomNo(), patientTreatmentRecord.getTreatmentMethod(), patientTreatmentRecord.getPID(), patientTreatmentRecord.getDID(), patientTreatmentRecord.getApptNo());
 
       return "patientTreatmentRecordResult";
     }

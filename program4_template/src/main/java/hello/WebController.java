@@ -95,7 +95,7 @@ public class WebController {
 
     @GetMapping("/query3")
     public String searchCurrentPatientQuery(Model model){
-        String sql = "select Patient.PID, Patient.fName as pfname, Patient.lName as plname, expectedDischarge - SYSDATE as DaysLeft, roomNo, amountDue from Patient, TreatmentRecord, PaymentRecord where Patient.PID = TreatmentRecord.PID  and TreatmentRecord.PID = PaymentRecord.PID and amountDue is not null and amountDue > 0 and dateHospitalized is not null and actualDischarge is null and expectedDischarge is not null and (SYSDATE + 5)<expectedDischarge";
+        String sql = "select Patient.PID, Patient.fName as pfname, Patient.lName as plname, expectedDischarge - trunc(SYSDATE) as DaysLeft, roomNo, amountDue from Patient, TreatmentRecord, PaymentRecord where Patient.PID = TreatmentRecord.PID  and TreatmentRecord.PID = PaymentRecord.PID and amountDue is not null and amountDue > 0 and dateHospitalized is not null and actualDischarge is null and expectedDischarge is not null and (SYSDATE + 5)<expectedDischarge";
         List<String> currPatientsFound = this.jdbcTemplate.query(
                 sql,
                 new RowMapper<String>() {
@@ -105,7 +105,7 @@ public class WebController {
                         String numdays = rs.getString("DaysLeft");
                         String roomnum = rs.getString("roomNo");
                         String totaldue = rs.getString("amountDue");
-                        return "Patient ID: " + pid + " Name: " + name + " Expected Hospital Days: " + numdays + " Room Number: " + roomnum + " Total Due: " + totaldue;
+                        return "Patient ID: " + pid + " Name: " + name + " Expected Hospital Days: " + numdays + " Room Number: " + roomnum + " Total Due: $" + totaldue;
                     }
                 });
 	model.addAttribute("queryResults", currPatientsFound);

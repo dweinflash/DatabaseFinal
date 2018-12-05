@@ -41,7 +41,7 @@ public class CashierRecordController {
 
     @PostMapping("/cashierRecordInsertion")
     public String cashierRecordSubmit(@ModelAttribute CashierRecord cashierRecord) {
-        //jdbcTemplate.update("insert into .cashierRecord values (?, ?)", cashierRecord.getFirstName());
+        jdbcTemplate.update("insert into PaymentReocrd values (?, ?, ?, ?, ?, ?, ?)", cashierRecord.getPaymentID(), cashierRecord.getCashierEID(), cashierRecord.getPID(), cashierRecord.getAmountDue(),  cashierRecord.getDueDate(),  cashierRecord.getPaymentStatus(), cashierRecord.getPaymentDate() );
 
         return "cashierRecordResult";
     }
@@ -54,7 +54,7 @@ public class CashierRecordController {
 
     @PostMapping("/cashierRecordUpdate")
     public String cashierRecordUpdate(@ModelAttribute CashierRecord cashierRecord) {
-      //jdbcTemplate.update("update from .cashierRecord where first_name = ? and last_name = ?", cashierRecord.getFirstName(), cashierRecord.getLastName());
+      jdbcTemplate.update("update  cashierRecord set  cashierEID = ?, amountDue = ?, dueDate = ?, paymentStatus = ?, paymentDate = ? where first_name = ? and last_name = ? where paymentID = ? ", cashierRecord.getCashierEID(), cashierRecord.getAmountDue(),  cashierRecord.getDueDate(),  cashierRecord.getPaymentStatus(), cashierRecord.getPaymentDate(), cashierRecord.getPaymentID());
 
       return "cashierRecordResult";
     }

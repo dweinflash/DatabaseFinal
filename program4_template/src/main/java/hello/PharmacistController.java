@@ -41,7 +41,7 @@ public class PharmacistController {
 
     @PostMapping("/addPharmacist")
     public String pharmacistSubmit(@ModelAttribute Pharmacist pharmacist) {
-        jdbcTemplate.update("insert into .pharmacist values (?, ?)", pharmacist.getfName());
+        jdbcTemplate.update("insert into pharmacist values (?, ?, ?, ?, ?, ?)", pharmacist.getPharmID(), pharmacist.getlName(), pharmacist.getfName(), pharmacist.getDOB(), pharmacist.getOfficeNum(), pharmacist.getStatus());
 
         return "pharmacistResult";
     }
@@ -54,7 +54,7 @@ public class PharmacistController {
 
     @PostMapping("/updatePharmacist")
     public String pharmacistUpdate(@ModelAttribute Pharmacist pharmacist) {
-      jdbcTemplate.update("update from .pharmacist where first_name = ? and last_name = ?", pharmacist.getfName(), pharmacist.getlName());
+        jdbcTemplate.update("update pharmacist set fname = ?, lname = ?, officeNum = ?, status = ? where pharmID = ?", pharmacist.getfName(), pharmacist.getlName(), pharmacist.getOfficeNum(), pharmacist.getStatus(), pharmacist.getPharmID());
 
       return "pharmacistResult";
     }
@@ -67,7 +67,7 @@ public class PharmacistController {
 
     @PostMapping("/deletePharmacist")
     public String pharmacistDelete(@ModelAttribute Pharmacist pharmacist) {
-      jdbcTemplate.update("delete from .pharmacist where first_name = ? and last_name = ?", pharmacist.getfName(), pharmacist.getlName());
+      jdbcTemplate.update("delete from pharmacist where pharmID = ?", pharmacist.getPharmID());
 
       return "pharmacistResult";
     }

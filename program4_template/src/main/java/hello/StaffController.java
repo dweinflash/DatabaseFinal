@@ -41,7 +41,7 @@ public class StaffController {
 
     @PostMapping("/addStaff")
     public String staffSubmit(@ModelAttribute Staff staff) {
-        jdbcTemplate.update("insert into .staff values (?, ?)", staff.getfName());
+        jdbcTemplate.update("insert into staff values (?, ?, ?,?, ?, ?,?, ?,? )", staff.getEID(), staff.getlName(), staff.getfName(), staff.getDOB(), staff.getDeptID(), staff.getSalary(), staff.getContactNo(), staff.getTitle(), staff.getGender());
 
         return "staffResult";
     }
@@ -54,7 +54,7 @@ public class StaffController {
 
     @PostMapping("/updateStaff")
     public String staffUpdate(@ModelAttribute Staff staff) {
-      jdbcTemplate.update("update from .staff where first_name = ? and last_name = ?", staff.getfName(), staff.getlName());
+        jdbcTemplate.update("update staff set fname = ?, lname = ?, deptID = ?, salary = ?, contactNo = ?, title  = ?, gender = ?,  where EID = ?", staff.getfName(), staff.getlName(), staff.getDeptID(), staff.getSalary(), staff.getContactNo(), staff.getTitle(), staff.getGender(), staff.getEID());
 
       return "staffResult";
     }
@@ -67,7 +67,7 @@ public class StaffController {
 
     @PostMapping("/deleteStaff")
     public String staffDelete(@ModelAttribute Staff staff) {
-      jdbcTemplate.update("delete from .staff where first_name = ? and last_name = ?", staff.getfName(), staff.getlName());
+      jdbcTemplate.update("delete from staff where EID = ?", staff.getEID());
 
       return "staffResult";
     }
