@@ -60,7 +60,12 @@ drop table Patient;
 
 
 select * from (Patient join treatmentrecord on Patient.PID=treatmentrecord.PID) join PaymentRecord on PaymentRecord.PID=Patient.PID;
-select staff.fName, staff.lName,
+
+select staff.fName, staff.lName, staff.EID from (
+    select receptionistEID from (
+     select PrescriptionRecord.PID as scriptPID from Pharmacist,PrescriptionRecord where medName = 'Viagra' and PrescriptionRecord.pharmID=20
+    ),Appointment where scriptPID=Appointment.PID
+),Staff where Staff.EID=receptionistEID;
 
 Remove all data:
 truncate table PaymentRecord;

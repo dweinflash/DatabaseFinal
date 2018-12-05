@@ -113,8 +113,30 @@ public class WebController {
     }
 
     @GetMapping("/query4")
-    public String query4Form(Model model) {
-        return "query4";
+    public String searchReceptionistRecord(Model model) {
+        model.addAttribute("queryfour", new QueryFour());
+        return "/query4";
+    }
+
+
+    @PostMapping("/query4")
+    public String searchReceptionistRecordQuery(@ModelAttribute QueryFour queryfour, Model model){
+        String sql = "select staff.fName as sfName, staff.lName as slName, staff.EID as sEID from (" +
+            "select distinct receptionistEID from (" +
+             "select PrescriptionRecord.PID as scriptPID from Pharmacist,PrescriptionRecord where medName = 'Viagra' and PrescriptionRecord.pharmID=" + queryfour.getID() +
+            "),Appointment where scriptPID=Appointment.PID" +
+        "),Staff where Staff.EID=receptionistEID and Staff.title='Receptionist'";
+        List<String> receptionistsFound = this.jdbcTemplate.query(
+                sql,
+                new RowMapper<String>() {
+                    public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        String name = rs.getString("sfName") +" "+ rs.getString("slName");
+                        String empID = rs.getString("sEID");
+                        return "Receptionist Name: " + name + "\tReceptionist EID: " + empID;
+                    }
+                });
+        model.addAttribute("queryResults", receptionistsFound);
+        return "/query4result";
     }
 
 }
