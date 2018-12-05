@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Nurse</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <form action="index.html">
+        <input type="submit" value="Home" />
+    </form>
+
+    <h1>Update Nurse Records</h1>
+    <form action="#" th:action="@{/updateNurse}" th:object="${nurse}" method="post">
+        <p>Nurse ID: <input type="text" th:field="*{nurseID}" /></p>
+        <p>First Name: <input type="text" th:field="*{fName}" /></p>
+        <p>Last Name: <input type="text" th:field="*{lName}" /></p>
+        <p>Date of Birth: <input type="text" th:field="*{DOB}" /></p>
+        <p>Room Number: <input type="text" th:field="*{roomNum}" /></p>
+        <p>Department ID: <input type="text" th:field="*{deptID}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+</body>
+</html>

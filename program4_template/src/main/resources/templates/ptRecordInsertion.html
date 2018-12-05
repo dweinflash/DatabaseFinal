@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Patient Treatment Record Insertion</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <form action="index.html">
+        <input type="submit" value="Home" />
+    </form>
+
+    <h1>Add Patient Treatment Record</h1>
+    <form action="#" th:action="@{/ptRecordInsertion}" th:object="${patientTreatmentRecord}" method="post">
+        <p>Patient ID: <input type="text" th:field="*{PID}" /></p>
+        <p>Doctor ID: <input type="text" th:field="*{DID}" /></p>
+        <p>Appointment Number: <input type="text" th:field="*{apptNo}" /></p>
+        <p>Visit Reason: <input type="text" th:field="*{visitReason}" /></p>
+        <p>Visit Date: <input type="text" th:field="*{visitDate}" /></p>
+        <p>Date Hospitalized: <input type="text" th:field="*{dateHospitalized}" /></p>
+        <p>Expected Discharge: <input type="text" th:field="*{expectedDischarge}" /></p>
+        <p>Actual Discharge: <input type="text" th:field="*{actualDischarge}" /></p>
+        <p>Room Number: <input type="text" th:field="*{roomNo}" /></p>
+        <p>Treatment Method: <input type="text" th:field="*{treatmentMethod}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+</body>
+</html>

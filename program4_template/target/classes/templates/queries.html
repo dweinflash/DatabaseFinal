@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Queries</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <form action="/index">
+        <input type="submit" value="Home" />
+    </form>
+
+    <h1>Query 1</h1>
+    <h4>When patients visit the hospital, they all must first check-in with the receptionist. Then, the receptionist
+        searches the patient from the patient record with their first name, last name, and DOB. Write a query
+        that lookup and print the found patient record. The query result should display PID, Pname (first name
+        + last name), gender, DOB, the most recent date of visit, the reason for the last visit, treatment method,
+        and the assigned doctor during the previous visit.
+    </h4>
+    <form action="/query1">
+        <input type="submit" value="Query 1">
+    </form>
+
+    <h1>Query 2</h1>
+    <h4>Write a query that displays the result of search by user who searched the list of doctors based on the
+        department. The user will input the department name, then the result should print Doctor’s name (first
+        + last name), office number, and the building name.
+    </h4>
+    <form action="/query2">
+        <input type="submit" value="Query 2">
+    </form>
+
+    <h1>Query 3</h1>
+    <h4>List the patients who are currently hospitalized and expected to be hospitalized more than 5 days with
+        an outstanding fees to be paid. Print the PID, Pname (first name + last name), number of expected
+        hospitalized days, room number, and total amount due.
+    </h4>
+    <form action="/query3">
+        <input type="submit" value="Query 3">
+    </form>
+
+    <h1>Query 4</h1>
+    <h4>Update</h4>
+    <form action="/query4">
+        <input type="submit" value="Query 4">
+    </form>
+
+</body>
+</html>

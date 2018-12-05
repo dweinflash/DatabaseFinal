@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Patient Record Result</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<h1>Patient Record</h1>
+    <p th:text="'Patient ID: ' + ${patient.PID}"/>
+    <p th:text="'First Name: ' + ${patient.fName}"/>
+    <p th:text="'Last Name: ' + ${patient.lName}"/>
+    <p th:text="'Gender: ' + ${patient.gender}"/>
+    <p th:text="'Date of Birth: ' + ${patient.DOB}"/>
+    <p th:text="'Address: ' + ${patient.address}"/>
+    <p th:text="'Contact Number: ' + ${patient.contactNo}"/>
+
+    <a href="/recordInsertion">Add another record</a> <br>
+    <a href="/recordUpdate">Update another record</a> <br>
+    <a href="/recordDeletion">Remove another record</a> <br>
+    <a href="/index.html">Home</a>
+</body>
+</html>
