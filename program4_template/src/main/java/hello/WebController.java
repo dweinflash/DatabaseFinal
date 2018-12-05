@@ -21,8 +21,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+/*+----------------------------------------------------------------------
+||
+||  Class WebController
+||
+||
+||        Purpose:  Resposible for the controller of the MVC. Will handle
+||                the HTTP requests. Identified by the @Controller annotation.
+||                Controller will handle the GET requests by returning a view
+||                As well as handling any other requests such as POST and its
+||                correct endpoint mapping. Handles all communication with the
+||                database using JDBC for queries and sql statements.
+||
+||
+++-----------------------------------------------------------------------*/
+
 @Controller
 public class WebController {
+
+    //JDBC Setup Functions
 
   @Autowired
     private DataSource dataSource;
@@ -33,16 +50,61 @@ public class WebController {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    /*---------------------------------------------------------------------
+    |  Method queriesForm
+    |
+    |  Purpose: This method will handle the GET HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also add attributes to the model and
+    |           create a new instance of the class and add the attributes
+    |           if needed.
+    |
+    |  Parameters: Model model- the model
+    |
+    |  Returns: The name of the view to load.
+    |
+     *-------------------------------------------------------------------*/
+
     @GetMapping("/queries")
     public String queriesForm(Model model) {
         return "queries";
     }
+
+    /*---------------------------------------------------------------------
+    |  Method query1
+    |
+    |  Purpose: This method will handle the GET HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also add attributes to the model and
+    |           create a new instance of the class and add the attributes
+    |           if needed.
+    |
+    |  Parameters: Model model- the model
+    |
+    |  Returns: The name of the view to load.
+    |
+     *-------------------------------------------------------------------*/
 
     @GetMapping("/query1")
     public String searchPatientRecord(Model model) {
         model.addAttribute("queryOne", new QueryResults());
         return "/query1";
     }
+
+    /*---------------------------------------------------------------------
+    |  Method searchPatientRecordQuery
+    |
+    |  Purpose: This medthod will handle the POST HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also take the created class object and
+    |           use it's field values in order to perform the proper
+    |           JDBC sql statement if necessary.
+    |
+    |  Parameters: ModelAttribute of class object
+    |
+    |  Returns: The name of the result view
+    |
+     *-------------------------------------------------------------------*/
 
     @PostMapping("/query1")
     public String searchPatientRecordQuery(@ModelAttribute QueryResults queryOne, Model model){
@@ -70,11 +132,41 @@ public class WebController {
         return "/query1result";
     }
 
+    /*---------------------------------------------------------------------
+    |  Method query2
+    |
+    |  Purpose: This method will handle the GET HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also add attributes to the model and
+    |           create a new instance of the class and add the attributes
+    |           if needed.
+    |
+    |  Parameters: Model model- the model
+    |
+    |  Returns: The name of the view to load.
+    |
+     *-------------------------------------------------------------------*/
+
     @GetMapping("/query2")
     public String searchDoctorRecord(Model model) {
         model.addAttribute("querytwo", new QueryTwo());
         return "/query2";
     }
+
+    /*---------------------------------------------------------------------
+    |  Method searchDoctorRecordQuery
+    |
+    |  Purpose: This medthod will handle the POST HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also take the created class object and
+    |           use it's field values in order to perform the proper
+    |           JDBC sql statement if necessary.
+    |
+    |  Parameters: ModelAttribute of class object
+    |
+    |  Returns: The name of the result view
+    |
+     *-------------------------------------------------------------------*/
 
     @PostMapping("/query2")
     public String searchDoctorRecordQuery(@ModelAttribute QueryTwo querytwo, Model model){
@@ -92,6 +184,22 @@ public class WebController {
 	model.addAttribute("queryResults", doctorsFound);
         return "/query2result";
     }
+
+    /*---------------------------------------------------------------------
+    |  Method query2
+    |
+    |  Purpose: This method will handle the GET HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also add attributes to the model and
+    |           create a new instance of the class and add the attributes
+    |           if needed. This function will also perform the query and
+    |           parse the result as needed for the returned view.
+    |
+    |  Parameters: Model model- the model
+    |
+    |  Returns: The name of the view to load.
+    |
+     *-------------------------------------------------------------------*/
 
     @GetMapping("/query3")
     public String searchCurrentPatientQuery(Model model){
@@ -112,12 +220,41 @@ public class WebController {
         return "/query3result";
     }
 
+    /*---------------------------------------------------------------------
+    |  Method query4
+    |
+    |  Purpose: This method will handle the GET HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also add attributes to the model and
+    |           create a new instance of the class and add the attributes
+    |           if needed.
+    |
+    |  Parameters: Model model- the model
+    |
+    |  Returns: The name of the view to load.
+    |
+     *-------------------------------------------------------------------*/
+
     @GetMapping("/query4")
     public String searchReceptionistRecord(Model model) {
         model.addAttribute("queryfour", new QueryFour());
         return "/query4";
     }
 
+    /*---------------------------------------------------------------------
+    |  Method searchReceptionistRecordQuery
+    |
+    |  Purpose: This medthod will handle the POST HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also take the created class object and
+    |           use it's field values in order to perform the proper
+    |           JDBC sql statement if necessary.
+    |
+    |  Parameters: ModelAttribute of class object
+    |
+    |  Returns: The name of the result view
+    |
+     *-------------------------------------------------------------------*/
 
     @PostMapping("/query4")
     public String searchReceptionistRecordQuery(@ModelAttribute QueryFour queryfour, Model model){

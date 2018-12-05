@@ -21,8 +21,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+/*+----------------------------------------------------------------------
+||
+||  Class StaffController
+||
+||
+||        Purpose:  Resposible for the controller of the MVC. Will handle
+||                the HTTP requests. Identified by the @Controller annotation.
+||                Controller will handle the GET requests by returning a view
+||                As well as handling any other requests such as POST and its
+||                correct endpoint mapping. Handles all communication with the
+||                database using JDBC for queries and sql statements.
+||
+||
+++-----------------------------------------------------------------------*/
+
 @Controller
 public class StaffController {
+
+    //JDBC Setup Functions
 
   @Autowired
     private DataSource dataSource;
@@ -33,11 +50,41 @@ public class StaffController {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    /*---------------------------------------------------------------------
+    |  Method staffForm
+    |
+    |  Purpose: This method will handle the GET HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also add attributes to the model and
+    |           create a new instance of the class and add the attributes
+    |           if needed.
+    |
+    |  Parameters: Model model- the model
+    |
+    |  Returns: The name of the view to load.
+    |
+     *-------------------------------------------------------------------*/
+
     @GetMapping("/addStaff")
     public String staffForm(Model model) {
         model.addAttribute("staff", new Staff());
         return "addStaff";
     }
+
+    /*---------------------------------------------------------------------
+    |  Method staffSubmit
+    |
+    |  Purpose: This medthod will handle the POST HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also take the created class object and
+    |           use it's field values in order to perform the proper
+    |           JDBC sql statement if necessary.
+    |
+    |  Parameters: ModelAttribute of class object
+    |
+    |  Returns: The name of the result view
+    |
+     *-------------------------------------------------------------------*/
 
     @PostMapping("/addStaff")
     public String staffSubmit(@ModelAttribute Staff staff) {
@@ -46,11 +93,41 @@ public class StaffController {
         return "staffResult";
     }
 
+    /*---------------------------------------------------------------------
+    |  Method staffFormUpdate
+    |
+    |  Purpose: This method will handle the GET HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also add attributes to the model and
+    |           create a new instance of the class and add the attributes
+    |           if needed.
+    |
+    |  Parameters: Model model- the model
+    |
+    |  Returns: The name of the view to load.
+    |
+     *-------------------------------------------------------------------*/
+
     @GetMapping("/updateStaff")
     public String staffFormUpdate(Model model) {
         model.addAttribute("staff", new Staff());
         return "updateStaff";
     }
+
+    /*---------------------------------------------------------------------
+    |  Method staffUpdate
+    |
+    |  Purpose: This medthod will handle the POST HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also take the created class object and
+    |           use it's field values in order to perform the proper
+    |           JDBC sql statement if necessary.
+    |
+    |  Parameters: ModelAttribute of class object
+    |
+    |  Returns: The name of the result view
+    |
+     *-------------------------------------------------------------------*/
 
     @PostMapping("/updateStaff")
     public String staffUpdate(@ModelAttribute Staff staff) {
@@ -59,11 +136,41 @@ public class StaffController {
       return "staffResult";
     }
 
+    /*---------------------------------------------------------------------
+    |  Method staffFormDelete
+    |
+    |  Purpose: This method will handle the GET HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also add attributes to the model and
+    |           create a new instance of the class and add the attributes
+    |           if needed.
+    |
+    |  Parameters: Model model- the model
+    |
+    |  Returns: The name of the view to load.
+    |
+     *-------------------------------------------------------------------*/
+
     @GetMapping("/deleteStaff")
     public String staffFormDelete(Model model) {
         model.addAttribute("staff", new Staff());
         return "deleteStaff";
     }
+
+    /*---------------------------------------------------------------------
+    |  Method staffDelete
+    |
+    |  Purpose: This medthod will handle the POST HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also take the created class object and
+    |           use it's field values in order to perform the proper
+    |           JDBC sql statement if necessary.
+    |
+    |  Parameters: ModelAttribute of class object
+    |
+    |  Returns: The name of the result view
+    |
+     *-------------------------------------------------------------------*/
 
     @PostMapping("/deleteStaff")
     public String staffDelete(@ModelAttribute Staff staff) {
