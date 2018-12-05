@@ -59,7 +59,8 @@ drop table Patient;
 
 
 
-
+select * from (Patient join treatmentrecord on Patient.PID=treatmentrecord.PID) join PaymentRecord on PaymentRecord.PID=Patient.PID;
+select staff.fName, staff.lName,
 
 Remove all data:
 truncate table PaymentRecord;

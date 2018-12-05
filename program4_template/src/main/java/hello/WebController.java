@@ -46,14 +46,15 @@ public class WebController {
 
     @PostMapping("/query1")
     public String searchPatientRecordQuery(@ModelAttribute QueryResults queryOne, Model model){
-        String sql = "select Patient.PID, Patient.lName as ptfname, Patient.fName as ptlname, Patient.gender, Patient.DOB, visitDate, visitReason, treatmentMethod, Doctor.fName as docfname, Doctor.lName as doclname from Patient, TreatmentRecord, Doctor where Patient.PID = TreatmentRecord.PID and Doctor.DID = TreatmentRecord.DID and Patient.lName = '" + queryOne.getlName() + "' and Patient.fName = '" +queryOne.getfName() + "' and Patient.DOB = " + queryOne.getDOB();
+        String sql = "select Patient.PID, Patient.lName as ptfname, Patient.fName as ptlname, Patient.gender, Patient.DOB, visitDate, visitReason, treatmentMethod, Doctor.fName as docfname, Doctor.lName as doclname from Patient, TreatmentRecord, Doctor where Patient.PID = TreatmentRecord.PID and Doctor.DID = TreatmentRecord.DID and Patient.lName = '"+
+         queryOne.getlName() + "' and Patient.fName = '" +queryOne.getfName() + "' and Patient.DOB = to_date('" + queryOne.getDOB() + "','DD-MON-YYYY')";
         List<String> patientsFound = this.jdbcTemplate.query(
                 sql,
                 new RowMapper<String>() {
                     public String mapRow(ResultSet rs, int rowNum) throws SQLException {
                         String name = rs.getString("ptfName") +" "+ rs.getString("ptlName");;
                         String dob = rs.getString("DOB");
-                        String doctor = rs.getString("docfname") +" "+ rs.getString("docfname");
+                        String doctor = rs.getString("docfname") +" "+ rs.getString("doclname");
                         return "Patient Name: " + name + "\nProvider: Dr. " + doctor + "\nPatient DOB: " + dob;
                     }
                 });
@@ -70,13 +71,13 @@ public class WebController {
     }
 
     @GetMapping("/query2")
-    public String searchPatientRecord(Model model) {
+    public String searchDoctorRecord(Model model) {
         model.addAttribute("querytwo", new QueryTwo());
         return "/query2";
     }
 
     @PostMapping("/query2")
-    public String searchPatientRecordQuery(@ModelAttribute QueryTwo querytwo, Model model){
+    public String searchDoctorRecordQuery(@ModelAttribute QueryTwo querytwo, Model model){
         String sql = "select Doctor.fname as dfname, Doctor.lname as dlname, Doctor.officeNo, Department.bldgName from Doctor, Department WHERE Department.name='"+ querytwo.getname() +"' AND Doctor.deptID = Department.deptID";
         List<String> doctorsFound = this.jdbcTemplate.query(
                 sql,
@@ -96,7 +97,7 @@ public class WebController {
     public String query3Form(Model model) {
         return "query3";
     }
-    
+
     @GetMapping("/query4")
     public String query4Form(Model model) {
         return "query4";
