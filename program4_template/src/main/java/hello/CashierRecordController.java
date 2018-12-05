@@ -131,7 +131,7 @@ public class CashierRecordController {
 
     @PostMapping("/cashierRecordUpdate")
     public String cashierRecordUpdate(@ModelAttribute CashierRecord cashierRecord) {
-      jdbcTemplate.update("update  cashierRecord set  cashierEID = ?, amountDue = ?, dueDate = ?, paymentStatus = ?, paymentDate = ? where first_name = ? and last_name = ? where paymentID = ? ", cashierRecord.getCashierEID(), cashierRecord.getAmountDue(),  cashierRecord.getDueDate(),  cashierRecord.getPaymentStatus(), cashierRecord.getPaymentDate(), cashierRecord.getPaymentID());
+      jdbcTemplate.update("update  PaymentRecord set  cashierEID = ?, amountDue = ?, dueDate = ?, paymentStatus = ?, paymentDate = ? where first_name = ? and last_name = ? where paymentID = ? ", cashierRecord.getCashierEID(), cashierRecord.getAmountDue(),  cashierRecord.getDueDate(),  cashierRecord.getPaymentStatus(), cashierRecord.getPaymentDate(), cashierRecord.getPaymentID());
 
       return "cashierRecordResult";
     }
