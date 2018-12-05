@@ -93,8 +93,22 @@ public class WebController {
     }
 
     @GetMapping("/query3")
-    public String query3Form(Model model) {
-        return "query3";
+    public String searchCurrentPatientQuery(Model model){
+        String sql = "select Patient.PID, Patient.fName as pfname, Patient.lName as plname, expectedDischarge - SYSDATE as DaysLeft, roomNo, amountDue from Patient, TreatmentRecord, PaymentRecord where Patient.PID = TreatmentRecord.PID  and TreatmentRecord.PID = PaymentRecord.PID and amountDue is not null and amountDue > 0 and dateHospitalized is not null and actualDischarge is null and expectedDischarge is not null and (SYSDATE + 5)<expectedDischarge";
+        List<String> currPatientsFound = this.jdbcTemplate.query(
+                sql,
+                new RowMapper<String>() {
+                    public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        String pid = rs.getString("PID");
+                        String name = rs.getString("pfname") +" "+ rs.getString("plname");
+                        String numdays = rs.getString("DaysLeft");
+                        String roomnum = rs.getString("roomNo");
+                        String totaldue = rs.getString("amountDue");
+                        return "Patient ID: " + pid + " Name: " + name + " Expected Hospital Days: " + numdays + " Room Number: " + roomnum + " Total Due: " + totaldue;
+                    }
+                });
+	model.addAttribute("queryResults", currPatientsFound);
+        return "/query3result";
     }
 
     @GetMapping("/query4")
