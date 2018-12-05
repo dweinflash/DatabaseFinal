@@ -104,7 +104,7 @@ public class WebController {
                         String numdays = rs.getString("DaysLeft");
                         String roomnum = rs.getString("roomNo");
                         String totaldue = rs.getString("amountDue");
-                        return "Patient ID: " + pid + " Name: " + name + " Expected Hospital Days: " + numdays + " Room Number: " + roomnum + " Total Due: " + totaldue;
+                        return "Patient ID: " + pid + " Name: " + name + " Expected Hospital Days: " + numdays + " Room Number: " + roomnum + " Total Due: $" + totaldue;
                     }
                 });
 	model.addAttribute("queryResults", currPatientsFound);
