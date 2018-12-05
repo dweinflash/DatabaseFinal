@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Query 4 Result</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Receptionists Who Set Up Appointments For Patients Taking Viagra From A Specific Pharmacist</h1>
+<tr th:each="result: ${queryResults}">
+    <td th:text="${result}"></td>
+    <br>
+</tr>
+<a href="/index.html">Home</a>
+</body>
+</html>

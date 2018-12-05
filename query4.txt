@@ -1,0 +1,6 @@
+SELECT staff.fname, staff.title, nearby
+FROM staff, stafftype, 
+(
+SELECT officeno AS nearby FROM ( SELECT * FROM pharmacist order by officeno desc ) where rownum=1
+)
+WHERE stafftype.deptid=staff.deptid AND fname='Dorie';

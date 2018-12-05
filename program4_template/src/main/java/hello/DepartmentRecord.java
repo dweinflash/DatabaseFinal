@@ -1,46 +1,56 @@
 package hello;
 
+/*+----------------------------------------------------------------------
+||
+||  Class DepartmentRecord
+||
+||
+||        Purpose:  Resposible for the creation of a Model object.
+||                Contains the correct fields that correspond to
+||                the form fields by using getter and setter methods.
+||                Will be used to capture information in the forms
+||                and placed into the proper JDBC sql statements.
+||                The variable types will have to work with the
+||                database tables by having the same type.
+||
+++-----------------------------------------------------------------------*/
+
 public class DepartmentRecord {
 
-    private String deptID;
+    private int deptID;
     private String name;
     private String bldgName;
-    private String deptOffNum;
+    private int deptOffNum;
 
-    //Getters
-
-    public String getdeptID(){
+    public int getDeptID() {
         return deptID;
     }
 
-    public String getname(){
-        return name;
-    }
-
-    public String getbldgName(){
-        return bldgName;
-    }
-
-    public String getdeptOffNum(){
-        return deptOffNum;
-    }
-
-    //Setters
-
-    public void setdeptID(String deptID){
+    public void setDeptID(int deptID) {
         this.deptID = deptID;
     }
 
-    public void setname(String name){
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setbldgName(String bldgName){
+    public String getBldgName() {
+        return bldgName;
+    }
+
+    public void setBldgName(String bldgName) {
         this.bldgName = bldgName;
     }
 
-    public void setdeptOffNum(String deptOffNum){
-        this.deptOffNum = deptOffNum;
+    public int getDeptOffNum() {
+        return deptOffNum;
     }
 
+    public void setDeptOffNum(int deptOffNum) {
+        this.deptOffNum = deptOffNum;
+    }
 }

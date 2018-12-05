@@ -1,101 +1,111 @@
 package hello;
 
+/*+----------------------------------------------------------------------
+||
+||  Class PatientTreatmentRecord
+||
+||
+||        Purpose:  Resposible for the creation of a Model object.
+||                Contains the correct fields that correspond to
+||                the form fields by using getter and setter methods.
+||                Will be used to capture information in the forms
+||                and placed into the proper JDBC sql statements.
+||                The variable types will have to work with the
+||                database tables by having the same type.
+||
+++-----------------------------------------------------------------------*/
+
+
 public class PatientTreatmentRecord {
 
-    private String PID;
-    private String DID;
-    private String apptNo;
+    private int PID;
+    private int DID;
+    private int apptNo;
     private String visitReason;
     private String visitDate;
     private String dateHospitalized;
     private String expectedDischarge;
     private String actualDischarge;
-    private String roomNo;
+    private int roomNo;
     private String treatmentMethod;
 
-    //Getters
-
-    public String getPID(){
+    public int getPID() {
         return PID;
     }
 
-    public String getDID(){
-        return DID;
-    }
-
-    public String getapptNo(){
-        return apptNo;
-    }
-
-    public String getvisitReason(){
-        return visitReason;
-    }
-
-    public String getvisitDate(){
-        return visitDate;
-    }
-
-    public String getdateHospitalized(){
-        return dateHospitalized;
-    }
-
-    public String getexpectedDischarge(){
-        return expectedDischarge;
-    }
-
-    public String getactualDischarge(){
-        return actualDischarge;
-    }
-
-    public String getroomNo(){
-        return roomNo;
-    }
-
-    public String gettreatmentMethod(){
-        return treatmentMethod;
-    }
-
-    //Setters
-
-    public void setPID(String PID){
+    public void setPID(int PID) {
         this.PID = PID;
     }
 
-    public void setDID(String DID){
+    public int getDID() {
+        return DID;
+    }
+
+    public void setDID(int DID) {
         this.DID = DID;
     }
 
-    public void setapptNo(String apptNo){
+    public int getApptNo() {
+        return apptNo;
+    }
+
+    public void setApptNo(int apptNo) {
         this.apptNo = apptNo;
     }
 
-    public void setvisitReason(String visitReason){
+    public String getVisitReason() {
+        return visitReason;
+    }
+
+    public void setVisitReason(String visitReason) {
         this.visitReason = visitReason;
     }
 
-    public void setvisitDate(String visitDate){
+    public String getVisitDate() {
+        return visitDate;
+    }
+
+    public void setVisitDate(String visitDate) {
         this.visitDate = visitDate;
     }
 
-    public void setdateHospitalized(String dateHospitalized){
+    public String getDateHospitalized() {
+        return dateHospitalized;
+    }
+
+    public void setDateHospitalized(String dateHospitalized) {
         this.dateHospitalized = dateHospitalized;
     }
 
-    public void setexpectedDischarge(String expectedDischarge){
+    public String getExpectedDischarge() {
+        return expectedDischarge;
+    }
+
+    public void setExpectedDischarge(String expectedDischarge) {
         this.expectedDischarge = expectedDischarge;
     }
 
-    public void setactualDischarge(String actualDischarge){
+    public String getActualDischarge() {
+        return actualDischarge;
+    }
+
+    public void setActualDischarge(String actualDischarge) {
         this.actualDischarge = actualDischarge;
     }
 
-    public void setroomNo(String roomNo){
+    public int getRoomNo() {
+        return roomNo;
+    }
+
+    public void setRoomNo(int roomNo) {
         this.roomNo = roomNo;
     }
 
-    public void settreatmentMethod(String treatmentMethod){
-        this.treatmentMethod = treatmentMethod;
+    public String getTreatmentMethod() {
+        return treatmentMethod;
     }
 
-
+    public void setTreatmentMethod(String treatmentMethod) {
+        this.treatmentMethod = treatmentMethod;
+    }
 }

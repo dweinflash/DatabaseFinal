@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Patient Record Result</title>
+    <title>Query 1 Result</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <h1>Patient Found</h1>
-<tr th:each="${queryResults}">
-    <td th:text="${result}"></td>
+<tr th:each="result: ${queryResults}">
+    <td th:text="${result}"></td> <br>
 </tr>
 <a href="/index.html">Home</a>
 </body>

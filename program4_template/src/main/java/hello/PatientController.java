@@ -21,8 +21,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+/*+----------------------------------------------------------------------
+||
+||  Class PatientController
+||
+||
+||        Purpose:  Resposible for the controller of the MVC. Will handle
+||                the HTTP requests. Identified by the @Controller annotation.
+||                Controller will handle the GET requests by returning a view
+||                As well as handling any other requests such as POST and its
+||                correct endpoint mapping. Handles all communication with the
+||                database using JDBC for queries and sql statements.
+||
+||
+++-----------------------------------------------------------------------*/
+
 @Controller
 public class PatientController {
+
+//JDBC Setup Functions
 
   @Autowired
     private DataSource dataSource;
@@ -33,18 +50,63 @@ public class PatientController {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    /*---------------------------------------------------------------------
+    |  Method patientForm
+    |
+    |  Purpose: This method will handle the GET HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also add attributes to the model and
+    |           create a new instance of the class and add the attributes
+    |           if needed.
+    |
+    |  Parameters: Model model- the model
+    |
+    |  Returns: The name of the view to load.
+    |
+     *-------------------------------------------------------------------*/
+
     @GetMapping("/addPatient")
     public String patientForm(Model model) {
         model.addAttribute("patient", new Patient());
         return "addPatient";
     }
 
+    /*---------------------------------------------------------------------
+    |  Method patientSubmit
+    |
+    |  Purpose: This medthod will handle the POST HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also take the created class object and
+    |           use it's field values in order to perform the proper
+    |           JDBC sql statement if necessary.
+    |
+    |  Parameters: ModelAttribute of class object
+    |
+    |  Returns: The name of the result view
+    |
+     *-------------------------------------------------------------------*/
+
     @PostMapping("/addPatient")
     public String patientSubmit(@ModelAttribute Patient patient) {
-        jdbcTemplate.update("insert into .patient values (?, ?)", patient.getfName());
+        jdbcTemplate.update("insert into patient values (?, ?, ?, ?, ?, ?, ?)", patient.getPID(), patient.getlName(), patient.getfName(), patient.getgender(), patient.getDOB(),  patient.getaddress(), patient.getcontactNo());
 
         return "patientResult";
     }
+
+    /*---------------------------------------------------------------------
+    |  Method patientFormUpdate
+    |
+    |  Purpose: This method will handle the GET HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also add attributes to the model and
+    |           create a new instance of the class and add the attributes
+    |           if needed.
+    |
+    |  Parameters: Model model- the model
+    |
+    |  Returns: The name of the view to load.
+    |
+     *-------------------------------------------------------------------*/
 
     @GetMapping("/updatePatient")
     public String patientFormUpdate(Model model) {
@@ -52,12 +114,42 @@ public class PatientController {
         return "updatePatient";
     }
 
+    /*---------------------------------------------------------------------
+    |  Method patientUpdate
+    |
+    |  Purpose: This medthod will handle the POST HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also take the created class object and
+    |           use it's field values in order to perform the proper
+    |           JDBC sql statement if necessary.
+    |
+    |  Parameters: ModelAttribute of class object
+    |
+    |  Returns: The name of the result view
+    |
+     *-------------------------------------------------------------------*/
+
     @PostMapping("/updatePatient")
     public String patientUpdate(@ModelAttribute Patient patient) {
-      jdbcTemplate.update("update from .patient where first_name = ? and last_name = ?", patient.getfName(), patient.getlName());
+      jdbcTemplate.update("update patient set lName = ?, fName = ?, gender = ?, address = ?, contactNo = ? where PID = ?", patient.getfName(), patient.getlName(), patient.getgender(), patient.getaddress(), patient.getcontactNo(),patient.getPID());
 
       return "patientResult";
     }
+
+    /*---------------------------------------------------------------------
+    |  Method patientFormDelete
+    |
+    |  Purpose: This method will handle the GET HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also add attributes to the model and
+    |           create a new instance of the class and add the attributes
+    |           if needed.
+    |
+    |  Parameters: Model model- the model
+    |
+    |  Returns: The name of the view to load.
+    |
+     *-------------------------------------------------------------------*/
 
     @GetMapping("/deletePatient")
     public String patientFormDelete(Model model) {
@@ -65,39 +157,26 @@ public class PatientController {
         return "deletePatient";
     }
 
+    /*---------------------------------------------------------------------
+    |  Method patientDelete
+    |
+    |  Purpose: This medthod will handle the POST HTTP request by returning
+    |           the name of a view. The view will then render the correct
+    |           HTML content. Will also take the created class object and
+    |           use it's field values in order to perform the proper
+    |           JDBC sql statement if necessary.
+    |
+    |  Parameters: ModelAttribute of class object
+    |
+    |  Returns: The name of the result view
+    |
+     *-------------------------------------------------------------------*/
+
     @PostMapping("/deletePatient")
     public String patientDelete(@ModelAttribute Patient patient) {
-      jdbcTemplate.update("delete from .patient where first_name = ? and last_name = ?", patient.getfName(), patient.getlName());
+      jdbcTemplate.update("delete from patient where PID = ?", patient.getPID());
 
       return "patientResult";
-    }
-
-    @GetMapping("/query1result")
-    public String searchPatientRecord(Model model) {
-        model.addAttribute("query", new QueryResults());
-        return "/query1result";
-    }
-
-    @PostMapping("/query1result")
-    public String searchPatientRecordQuery(@ModelAttribute QueryResults query){
-        String sql = "select Patient.PID, Patient.lName as ptfname, Patient.fName as ptlname, Patient.gender, Patient.DOB, visitDate, visitReason, treatmentMethod, Doctor.fName as docfname, Doctor.lName as doclname from Patient join TreatmentRecord on PID join Doctor on DID where Patient.lName = " + query.getlName() + " and Patient.fName = " +query.getfName() + " and Patient.DOB = " + query.getDOB();
-        List<String> patientsFound = this.jdbcTemplate.query(
-                sql,
-                new RowMapper<String>() {
-                    public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        String name = rs.getString("ptfName") + rs.getString("ptlName");;
-                        String dob = String.valueOf(rs.getInt("DOB"));
-                        String doctor = rs.getString("docfname") + rs.getString("docfname");
-                        return "Patient Name: " + name + "\nProvider: Dr. " + doctor + "\nPatient DOB: " + dob;
-                    }
-                });
-        if(patientsFound.size() > 0) {
-            query.setResult(patientsFound.get(0));
-        }
-        else{
-            query.setResult("No patients found.");
-        }
-        return "/query1result";
     }
 
 }

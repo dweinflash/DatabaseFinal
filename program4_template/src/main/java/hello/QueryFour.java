@@ -2,7 +2,7 @@ package hello;
 
 /*+----------------------------------------------------------------------
 ||
-||  Class QueryTwo
+||  Class QueryFour
 ||
 ||
 ||        Purpose:  Resposible for the creation of a Model object.
@@ -15,20 +15,20 @@ package hello;
 ||
 ++-----------------------------------------------------------------------*/
 
-public class QueryTwo {
+public class QueryFour {
 
-    private String name;
+    private String ID;
 
     //Getters
 
-    public String getname(){
-        return name;
+    public String getID(){
+        return ID;
     }
 
     //Setters
 
-    public void setname(String name){
-        this.name = name;
+    public void setID(String ID){
+        this.ID = ID;
     }
 
 

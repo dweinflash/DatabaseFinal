@@ -1,8 +1,23 @@
 package hello;
 
+/*+----------------------------------------------------------------------
+||
+||  Class Patient
+||
+||
+||        Purpose:  Resposible for the creation of a Model object.
+||                Contains the correct fields that correspond to
+||                the form fields by using getter and setter methods.
+||                Will be used to capture information in the forms
+||                and placed into the proper JDBC sql statements.
+||                The variable types will have to work with the
+||                database tables by having the same type.
+||
+++-----------------------------------------------------------------------*/
+
 public class Patient {
 
-    private String PID;
+    private int PID;
     private String fName;
     private String lName;
     private String gender;
@@ -12,7 +27,7 @@ public class Patient {
 
     //Getters
 
-    public String getPID(){
+    public int getPID(){
         return PID;
     }
 
@@ -42,7 +57,7 @@ public class Patient {
 
     //Setters
 
-    public void setPID(String PID){
+    public void setPID(int PID){
         this.PID = PID;
     }
 
