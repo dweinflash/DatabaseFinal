@@ -39,17 +39,64 @@ public class WebController {
     }
 
     @GetMapping("/query1")
-    public String query1Form(Model model) {
-        return "query1";
+    public String searchPatientRecord(Model model) {
+        model.addAttribute("queryOne", new QueryResults());
+        return "/query1";
     }
+
+    @PostMapping("/query1")
+    public String searchPatientRecordQuery(@ModelAttribute QueryResults queryOne, Model model){
+        String sql = "select Patient.PID, Patient.lName as ptfname, Patient.fName as ptlname, Patient.gender, Patient.DOB, visitDate, visitReason, treatmentMethod, Doctor.fName as docfname, Doctor.lName as doclname from Patient, TreatmentRecord, Doctor where Patient.PID = TreatmentRecord.PID and Doctor.DID = TreatmentRecord.DID and Patient.lName = '" + queryOne.getlName() + "' and Patient.fName = '" +queryOne.getfName() + "' and Patient.DOB = " + queryOne.getDOB();
+        List<String> patientsFound = this.jdbcTemplate.query(
+                sql,
+                new RowMapper<String>() {
+                    public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        String name = rs.getString("ptfName") +" "+ rs.getString("ptlName");;
+                        String dob = rs.getString("DOB");
+                        String doctor = rs.getString("docfname") +" "+ rs.getString("docfname");
+                        return "Patient Name: " + name + "\nProvider: Dr. " + doctor + "\nPatient DOB: " + dob;
+                    }
+                });
+    model.addAttribute("queryResults", patientsFound);
+/*
+        if(patientsFound.size() > 0) {
+            query.setResult(patientsFound.get(0));
+        }
+        else{
+            query.setResult("No patients found.");
+        }
+*/
+        return "/query1result";
+    }
+
     @GetMapping("/query2")
-    public String query2Form(Model model) {
-        return "query2";
+    public String searchPatientRecord(Model model) {
+        model.addAttribute("querytwo", new QueryTwo());
+        return "/query2";
     }
+
+    @PostMapping("/query2")
+    public String searchPatientRecordQuery(@ModelAttribute QueryTwo querytwo, Model model){
+        String sql = "select Doctor.fname as dfname, Doctor.lname as dlname, Doctor.officeNo, Department.bldgName from Doctor, Department WHERE Department.name='"+ querytwo.getname() +"' AND Doctor.deptID = Department.deptID";
+        List<String> doctorsFound = this.jdbcTemplate.query(
+                sql,
+                new RowMapper<String>() {
+                    public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        String name = rs.getString("dfname") +" "+ rs.getString("dlname");
+                        String officeno = rs.getString("officeno");
+                        String bldgname = rs.getString("bldgname");
+                        return "Doctor Name: " + name + "\nBuilding Name: " + bldgname + "\nOffice No: " + officeno;
+                    }
+                });
+	model.addAttribute("queryResults", doctorsFound);
+        return "/query2result";
+    }
+
     @GetMapping("/query3")
     public String query3Form(Model model) {
         return "query3";
     }
+    
     @GetMapping("/query4")
     public String query4Form(Model model) {
         return "query4";
