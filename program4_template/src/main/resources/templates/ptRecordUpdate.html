@@ -7,12 +7,12 @@
 </head>
 <body>
 
-    <form action="/index">
+    <form action="index.html">
         <input type="submit" value="Home" />
     </form>
 
     <h1>Update Patient Treatment Record</h1>
-    <form action="#" th:action="@{/updatePatientTreatmentRecord}" th:object="${patientTreatmentRecord}" method="post">
+    <form action="#" th:action="@{/ptRecordUpdate}" th:object="${patientTreatmentRecord}" method="post">
         <p>Patient ID: <input type="text" th:field="*{PID}" /></p>
         <p>Doctor ID: <input type="text" th:field="*{DID}" /></p>
         <p>Appointment Number: <input type="text" th:field="*{apptNo}" /></p>

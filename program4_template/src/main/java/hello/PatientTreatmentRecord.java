@@ -39,19 +39,19 @@ public class PatientTreatmentRecord {
         return dateHospitalized;
     }
 
-    private String expectedDischarge(){
+    public String getexpectedDischarge(){
         return expectedDischarge;
     }
 
-    private String actualDischarge(){
+    public String getactualDischarge(){
         return actualDischarge;
     }
 
-    private String roomNo(){
+    public String getroomNo(){
         return roomNo;
     }
 
-    private String treatmentMethod(){
+    public String gettreatmentMethod(){
         return treatmentMethod;
     }
 
@@ -77,7 +77,7 @@ public class PatientTreatmentRecord {
         this.visitDate = visitDate;
     }
 
-    public void setdateHosiptalized(String dateHospitalized){
+    public void setdateHospitalized(String dateHospitalized){
         this.dateHospitalized = dateHospitalized;
     }
 

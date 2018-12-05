@@ -1,21 +1,25 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Query 1</title>
+    <title>Update Doctor</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <form action="/index">
+    <form action="index.html">
         <input type="submit" value="Home" />
     </form>
 
-    <h1>Patient Lookup</h1>
-    <form action="#" th:action="@{/searchPatientRecordQuery}" th:object="${QueryResults}" method="post">
+    <h1>Update Doctor Records</h1>
+    <form action="#" th:action="@{/updateDoctor}" th:object="${doctor}" method="post">
+        <p>Doctor ID: <input type="text" th:field="*{DID}" /></p>
         <p>First Name: <input type="text" th:field="*{fName}" /></p>
         <p>Last Name: <input type="text" th:field="*{lName}" /></p>
         <p>Date of Birth: <input type="text" th:field="*{DOB}" /></p>
+        <p>Department ID: <input type="text" th:field="*{deptID}" /></p>
+        <p>Office Number: <input type="text" th:field="*{officeNo}" /></p>
+        <p>Status: <input type="text" th:field="*{status}" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 

@@ -1,18 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Cashier Record Insertion</title>
+    <title>Cashier Record Update</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-        
+
     <form action="/index">
         <input type="submit" value="Home" />
     </form>
 
-    <h1>Add Cashier Record</h1>
-    <form action="#" th:action="@{/addCashierRecord}" th:object="${cashierRecord}" method="post">
+    <h1>Update Cashier Record</h1>
+    <form action="#" th:action="@{/cashierRecordUpdate}" th:object="${cashierRecord}" method="post">
         <p>Payment ID: <input type="text" th:field="*{paymentID}" /></p>
         <p>Cashier Employee ID: <input type="text" th:field="*{cashierEID}" /></p>
         <p>Patient ID: <input type="text" th:field="*{PID}" /></p>

@@ -33,26 +33,26 @@ public class CashierRecordController {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    @GetMapping("/addCashierRecord")
+    @GetMapping("/cashierRecordInsertion")
     public String cashierRecordForm(Model model) {
         model.addAttribute("cashierRecord", new CashierRecord());
-        return "addCashierRecord";
+        return "cashierRecordInsertion";
     }
 
-    @PostMapping("/addCashierRecord")
+    @PostMapping("/cashierRecordInsertion")
     public String cashierRecordSubmit(@ModelAttribute CashierRecord cashierRecord) {
         //jdbcTemplate.update("insert into .cashierRecord values (?, ?)", cashierRecord.getFirstName());
 
         return "cashierRecordResult";
     }
 
-    @GetMapping("/updateCashierRecord")
+    @GetMapping("/cashierRecordUpdate")
     public String cashierRecordFormUpdate(Model model) {
         model.addAttribute("cashierRecord", new CashierRecord());
         return "updateCashierRecord";
     }
 
-    @PostMapping("/updateCashierRecord")
+    @PostMapping("/cashierRecordUpdate")
     public String cashierRecordUpdate(@ModelAttribute CashierRecord cashierRecord) {
       //jdbcTemplate.update("update from .cashierRecord where first_name = ? and last_name = ?", cashierRecord.getFirstName(), cashierRecord.getLastName());
 

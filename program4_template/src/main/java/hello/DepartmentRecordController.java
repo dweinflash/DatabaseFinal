@@ -33,13 +33,13 @@ public class DepartmentRecordController {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    @GetMapping("/updateDepartmentRecord")
+    @GetMapping("/departmentRecordUpdate")
     public String departmentRecordFormUpdate(Model model) {
         model.addAttribute("departmentRecord", new DepartmentRecord());
-        return "updateDepartmentRecord";
+        return "departmentRecordUpdate";
     }
 
-    @PostMapping("/updateDepartmentRecord")
+    @PostMapping("/departmentRecordUpdate")
     public String departmentRecordUpdate(@ModelAttribute DepartmentRecord departmentRecord) {
       //jdbcTemplate.update("update from .departmentRecord where first_name = ? and last_name = ?", departmentRecord.getFirstName(), departmentRecord.getLastName());
 

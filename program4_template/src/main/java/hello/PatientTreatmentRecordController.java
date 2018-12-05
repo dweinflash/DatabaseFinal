@@ -33,26 +33,26 @@ public class PatientTreatmentRecordController {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    @GetMapping("/addPatientTreatmentRecord")
+    @GetMapping("/ptRecordInsertion")
     public String patientTreatmentRecordForm(Model model) {
         model.addAttribute("patientTreatmentRecord", new PatientTreatmentRecord());
-        return "addPatientTreatmentRecord";
+        return "ptRecordInsertion";
     }
 
-    @PostMapping("/addPatientTreatmentRecord")
+    @PostMapping("/ptRecordInsertion")
     public String patientTreatmentRecordSubmit(@ModelAttribute PatientTreatmentRecord patientTreatmentRecord) {
         //jdbcTemplate.update("insert into .patientTreatmentRecord values (?, ?)", patientTreatmentRecord.getFirstName());
 
         return "patientTreatmentRecordResult";
     }
 
-    @GetMapping("/updatePatientTreatmentRecord")
+    @GetMapping("/ptRecordUpdate")
     public String patientTreatmentRecordFormUpdate(Model model) {
         model.addAttribute("patientTreatmentRecord", new PatientTreatmentRecord());
-        return "updatePatientTreatmentRecord";
+        return "ptRecordUpdate";
     }
 
-    @PostMapping("/updatePatientTreatmentRecord")
+    @PostMapping("/ptRecordUpdate")
     public String patientTreatmentRecordUpdate(@ModelAttribute PatientTreatmentRecord patientTreatmentRecord) {
       //jdbcTemplate.update("update from .patientTreatmentRecord where first_name = ? and last_name = ?", patientTreatmentRecord.getFirstName(), patientTreatmentRecord.getLastName());
 
