@@ -1,3 +1,5 @@
+Summary: A database-driven web information management system
+
 How To Use:
 Patient Fields Example
 Patient ID: 42
